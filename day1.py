@@ -1,4 +1,3 @@
-# part 1
 def part1(ipt):
     curr = 50
     count = 0
@@ -9,7 +8,6 @@ def part1(ipt):
     return count
 
 
-# part 2
 def part2(ipt):
     curr = 50
     count = 0
@@ -19,7 +17,7 @@ def part2(ipt):
         if buf > 0:
             count += (curr + num) // 100
         elif buf < 0:
-            count += ((abs(buf)+100) // 100)
+            count += ((abs(buf) + 100) // 100)
             if curr == 0:
                 count -= 1
         else:
