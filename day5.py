@@ -1209,19 +1209,16 @@ def part1(ipt):
                 break
             
     return ans
-        
+    
 def part2(ipt):
     fresh_ipt = [[int(y) for y in x.split('-')] for x in [x for x in ipt.split('\n\n')][0].split('\n')]
-    fresh_ipt.sort(key=lambda x: x[0])
+    fresh_ipt.sort(key=lambda x: (x[0], x[1]))
+    print(fresh_ipt[-2])
     fresh_ipt.append([float("inf"),0])
     ans = 0
     curr_l, curr_r = fresh_ipt[0]
     for l, r in fresh_ipt[1:]:
-        # print(ans)
-        # print(curr_l, curr_r)
-        # print(l, r)
-        # print('-------')
-        if curr_r >= l:
+        if (curr_r >= l and curr_r <= r):
             curr_r = r
         else:
             ans += curr_r - curr_l + 1
@@ -1230,3 +1227,4 @@ def part2(ipt):
         
 # print(part1(ipt))
 print(part2(ipt))
+
