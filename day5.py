@@ -1228,3 +1228,7 @@ def part2(ipt):
 # print(part1(ipt))
 print(part2(ipt))
 
+'''
+correct
+- 358155203664116
+'''
