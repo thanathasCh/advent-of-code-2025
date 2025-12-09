@@ -157,31 +157,34 @@ ipt = '''......................................................................S
 .^.^.^.....^.^.........^...^.^.......^...^.^.^...^.^.^.^.^.^.^.^.^.^.^.^.^...^.^.^...........^.^...^.^.^.^.^.^.......^.^.^.^.......^.^.^.^.^.
 .............................................................................................................................................'''
 
+
 def part1(ipt):
     table = [list(x) for x in ipt.split('\n')]
     size = len(table[0])
     lasers = [table[0].index('S')]
     ans = 0
-    
+
     for i in table[1:]:
         new_lasers = set()
         for laser in lasers:
             if i[laser] == '^':
-                if laser-1 > -1:
-                    new_lasers.add(laser-1)
-                if laser+1 < size:
-                    new_lasers.add(laser+1)
+                if laser - 1 > -1:
+                    new_lasers.add(laser - 1)
+                if laser + 1 < size:
+                    new_lasers.add(laser + 1)
                     ans += 1
             elif i[laser] == '.':
                 new_lasers.add(laser)
         lasers = list(new_lasers)
-    
+
     return ans
-        
+
+
 def part2(ipt):
     table = [list(x) for x in ipt.split('\n')]
     size = len(table[0])
     m = [[-1 for _ in range(len(table))] for _ in range(len(table[0]))]
+
     def recursion(pos, index):
         print(pos, index)
         if index == len(table):
@@ -191,16 +194,16 @@ def part2(ipt):
         if table[index][pos] == '^':
             left = 0
             right = 0
-            if pos-1 > -1:
-                left = recursion(pos-1, index+1)
-            if pos+1 < size:
-                right = recursion(pos+1, index+1)
-            m[pos][index] = left+right
+            if pos - 1 > -1:
+                left = recursion(pos - 1, index + 1)
+            if pos + 1 < size:
+                right = recursion(pos + 1, index + 1)
+            m[pos][index] = left + right
             return m[pos][index]
-        return recursion(pos, index+1)
-    
+        return recursion(pos, index + 1)
+
     return recursion(table[0].index('S'), 1)
-    
+
 
 # print(part1(ipt))
 print(part2(ipt))

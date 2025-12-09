@@ -1022,38 +1022,41 @@ ipt = [1000, '''2003,26067,72758
 import math
 from collections import Counter
 
+
 def part1(pair, ipt):
     boxes = [[int(y) for y in x.split(',')] for x in ipt.split('\n')]
     possible_pairs = []
     for i in range(len(boxes)):
-        for j in range(i+1, len(boxes)):
+        for j in range(i + 1, len(boxes)):
             possible_pairs.append([math.dist(boxes[i], boxes[j]), [i, j]])
     possible_pairs.sort(key=lambda x: x[0])
-    
+
     symbol = [x for x in range(len(boxes))]
     for l, r in [[y for y in x[1]] for x in possible_pairs[:pair]]:
         indexes = [symbol[l], symbol[r]]
         mn, mx = min(indexes), max(indexes)
         symbol = [mn if x == mx else x for x in symbol]
     x1, x2, x3 = [x[1] for x in Counter(symbol).most_common(3)]
-    return x1*x2*x3
+    return x1 * x2 * x3
+
 
 def part2(_, ipt):
     boxes = [[int(y) for y in x.split(',')] for x in ipt.split('\n')]
     possible_pairs = []
     for i in range(len(boxes)):
-        for j in range(i+1, len(boxes)):
+        for j in range(i + 1, len(boxes)):
             possible_pairs.append([math.dist(boxes[i], boxes[j]), [i, j]])
     possible_pairs.sort(key=lambda x: x[0])
-    
+
     symbol = [x for x in range(len(boxes))]
     for l, r in [[y for y in x[1]] for x in possible_pairs]:
         indexes = [symbol[l], symbol[r]]
         mn, mx = min(indexes), max(indexes)
         symbol = [mn if x == mx else x for x in symbol]
         if len(set(symbol)) == 1:
-            return boxes[l][0] * boxes[r][0]    
-    
+            return boxes[l][0] * boxes[r][0]
 
-# print(part1(*ipt)) 29) 1256
+        # print(part1(*ipt)) 29) 1256
+
+
 print(part2(*ipt))

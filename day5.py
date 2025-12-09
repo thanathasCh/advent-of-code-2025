@@ -1194,27 +1194,29 @@ ipt = """169486974574545-170251643963353
 186443234315411
 531724905067097"""
 
+
 def part1(ipt):
     fresh_ipt, ingre_ipt = [x for x in ipt.split('\n\n')]
     fresh = []
     ingre = [int(x) for x in ingre_ipt.split('\n')]
     for i in fresh_ipt.split('\n'):
         fresh.append([int(x) for x in i.split('-')])
-                     
+
     ans = 0
     for i in ingre:
         for l, r in fresh:
-            if i in range(l, r+1):
+            if i in range(l, r + 1):
                 ans += 1
                 break
-            
+
     return ans
-    
+
+
 def part2(ipt):
     fresh_ipt = [[int(y) for y in x.split('-')] for x in [x for x in ipt.split('\n\n')][0].split('\n')]
     fresh_ipt.sort(key=lambda x: (x[0], x[1]))
     print(fresh_ipt[-2])
-    fresh_ipt.append([float("inf"),0])
+    fresh_ipt.append([float("inf"), 0])
     ans = 0
     curr_l, curr_r = fresh_ipt[0]
     for l, r in fresh_ipt[1:]:
@@ -1224,7 +1226,8 @@ def part2(ipt):
             ans += curr_r - curr_l + 1
             curr_l, curr_r = l, r
     return ans
-        
+
+
 # print(part1(ipt))
 print(part2(ipt))
 

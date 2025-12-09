@@ -214,6 +214,7 @@ def part1(ipt):
         ans += (mx * 10) + mx2
     return ans
 
+
 def part2(ipt):
     ans = 0
     for nums in [[int(y) for y in list(x)] for x in ipt.split('\n')]:
@@ -223,7 +224,7 @@ def part2(ipt):
         result = str(prev_mx)
 
         for i in range(10, -1, -1):
-            prev_mx = max(nums[prev_mx_i+1:prev_mx_i+(length-i-prev_mx_i)])
+            prev_mx = max(nums[prev_mx_i + 1:prev_mx_i + (length - i - prev_mx_i)])
             prev_mx_i = nums[prev_mx_i + 1:].index(prev_mx) + prev_mx_i + 1
             result += str(prev_mx)
         ans += int(result)
